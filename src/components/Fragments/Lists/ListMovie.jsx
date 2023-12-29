@@ -6,6 +6,7 @@ import {
   useFetchMoviesTrending,
 } from "../../../hooks/useFetchDatas";
 import CardMovie from "../../Elements/Card/CardMovie";
+import ButtonLoad from "../../Elements/ButtonLoad";
 
 function ListMovie() {
   const { type } = useParams();
@@ -34,13 +35,7 @@ function ListMovie() {
               movie.map((list) => <CardMovie movie={list} key={list.id} />)
             )}
             {!hasNextPage ? null : (
-              <button
-                type="button"
-                onClick={() => fetchNextPage()}
-                className="md:col-span-4 col-span-2 bg-secondary px-6 py-3 rounded-md"
-              >
-                {isFetchingNextPage ? "Loading..." : "Load More..."}
-              </button>
+              <ButtonLoad isFetchingNextPage={isFetchingNextPage} fetchNextPage={fetchNextPage} />
             )}
           </div>
         </div>

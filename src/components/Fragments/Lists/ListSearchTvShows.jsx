@@ -3,6 +3,7 @@ import { useFetchSeacrhLists } from "../../../hooks/useFetchDatas";
 import Loader from "../../Elements/Loader";
 import CardMovie from "../../Elements/Card/CardMovie";
 import CardTv from "../../Elements/Card/CardTv";
+import ButtonLoad from "../../Elements/ButtonLoad";
 
 function ListSearchTvShows({ search }) {
   const query = decodeURI(search);
@@ -24,17 +25,10 @@ function ListSearchTvShows({ search }) {
               movie.map((list) => <CardTv tv={list} key={list.id} />)
             )}
             {!hasNextPage ? null : (
-              <button
-                type="button"
-                onClick={() => fetchNextPage()}
-                className="md:col-span-4 col-span-2 bg-secondary px-6 py-3 rounded-md"
-              >
-                {isFetchingNextPage ? (
-                  <span className="loader-next"></span>
-                ) : (
-                  "Load More..."
-                )}
-              </button>
+              <ButtonLoad
+                fetchNextPage={fetchNextPage}
+                isFetchingNextPage={isFetchingNextPage}
+              />
             )}
           </div>
         </div>

@@ -5,6 +5,7 @@ import {
   useFetchTvShowsTrending,
 } from "../../../hooks/useFetchDatas";
 import CardTv from "../../Elements/Card/CardTv";
+import ButtonLoad from "../../Elements/ButtonLoad";
 function ListTvShow() {
   const { type } = useParams();
   const [shows, error, status, hasNextPage, fetchNextPage, isFetchingNextPage] =
@@ -25,13 +26,7 @@ function ListTvShow() {
               show.map((list) => <CardTv tv={list} key={list.id} />)
             )}
             {!hasNextPage ? null : (
-              <button
-                type="button"
-                onClick={() => fetchNextPage()}
-                className="md:col-span-4 col-span-2 bg-secondary px-6 py-3 rounded-md"
-              >
-                {isFetchingNextPage ? "Loading..." : "Load More..."}
-              </button>
+              <ButtonLoad isFetchingNextPage={isFetchingNextPage} fetchNextPage={fetchNextPage} />
             )}
           </div>
         </div>
