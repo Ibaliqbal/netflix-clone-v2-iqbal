@@ -34,13 +34,13 @@ function DetailTv() {
           })`,
         }}
       >
-        <Link
-          to={"/"}
+        <button
+          onClick={() => history.back()}
           className="absolute text-white top-7 inline-flex items-center gap-2 text-xl left-8 bg-blue-600 px-3 py-1 rounded-full bg-transparent mix-blend-difference"
         >
           <BsArrowLeftCircleFill />
           Back
-        </Link>
+        </button>
       </div>
       <div className="w-full">
         <div className="container">

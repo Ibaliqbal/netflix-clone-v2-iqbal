@@ -24,7 +24,7 @@ function HeroSection() {
         </div>
       </div>
       <div className="md:w-1/2 w-full">
-        <div className="lg:w-[500px] lg:h-[500px] w-[350px] h-[350px] mx-auto mt-6 ">
+        <div className="lg:w-[500px] lg:h-[500px] w-[300px] h-[300px] mx-auto mt-6 ">
           <img src={HeroImage} alt="SpiderMan" className="w-full h-full" />
         </div>
       </div>
