@@ -68,7 +68,7 @@ function movie() {
                     Popularity : {movie?.popularity} <BsPeopleFill />
                   </p>
                 </div>
-                <ButtonPlay />
+                <ButtonPlay series={"movie"} id={movie?.id}/>
               </div>
               <div className="text-white">
                 <h1>Upcoming Movies</h1>

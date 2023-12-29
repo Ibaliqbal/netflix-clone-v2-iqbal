@@ -1,5 +1,5 @@
 import axios from "axios";
-import toast from "solid-toast";
+import Swal from "sweetalert2";
 
 const baseUrl = import.meta.env.VITE_BASE_URL;
 const apiKey = import.meta.env.VITE_API_KEY;
@@ -116,8 +116,18 @@ export const setVideo = async (series, id) => {
   if (data.length > 0) {
     const key = data[0].key;
     const videoUrl = `https://www.youtube.com/watch?v=${key}`;
-    window.location.href = videoUrl;
+    window.open(videoUrl, "_blank");
   } else {
-    toast.error("Video not found");
+    const Toast = Swal.mixin({
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+    });
+    Toast.fire({
+      icon: "error",
+      title: "Video not available",
+    });
   }
 };

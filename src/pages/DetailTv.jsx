@@ -74,7 +74,7 @@ function DetailTv() {
                     <BsPeopleFill />
                   </div>
                 </div>
-                <ButtonPlay />
+                <ButtonPlay series={"tv"} id={show?.id}/>
               </div>
               <div className="text-white">
                 <h1>Upcoming Tv List</h1>
