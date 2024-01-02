@@ -5,9 +5,9 @@ import { useEffect, useState } from "react";
 import { fetchMoviesUpComing, getRandom } from "../data/api";
 import { BsArrowLeftCircleFill, BsPeopleFill } from "react-icons/bs";
 import Ratings from "../feature/Ratings";
-import { Link } from "react-router-dom";
 import ButtonPlay from "../components/Elements/ButtonPlay";
 import Loader from "../components/Elements/Loader";
+import CastMovie from "../components/Elements/Cast/CastMovie";
 
 function movie() {
   const { id } = useParams();
@@ -45,11 +45,11 @@ function movie() {
       </div>
       <div className="w-full">
         <div className="container">
-          <article className="w-full grid lg:grid-cols-3 place-items-center gap-5 pb-10">
+          <article className="w-full grid lg:grid-cols-3 place-items-center gap-5 pb-10 pt-6">
             <img
               src={`${import.meta.env.VITE_BASE_URL_IMG}${movie?.poster_path}`}
               alt="Poster"
-              className="lg:-mt-[40rem] -mt-[10rem] relative"
+              className="lg:-mt-[30rem] -mt-[10rem] relative"
             />
             <div className="grid gap-8 col-span-2">
               <div className="text-white leading-loose tracking-wide">
@@ -71,29 +71,16 @@ function movie() {
                 </div>
                 <ButtonPlay series={"movie"} id={movie?.id} />
               </div>
-              <div className="text-white">
-                <h1>Upcoming Movies</h1>
-                <div className="grid lg:grid-cols-4 md:grid-cols-4 grid-cols-2 gap-x-2 mt-4">
-                  {moviesUp.map((movie) => (
-                    <div key={movie.id}>
-                      <Link to={`/movie/${movie.id}`}>
-                        <img
-                          src={`${import.meta.env.VITE_BASE_URL_IMG}${
-                            movie.poster_path
-                          }`}
-                          alt=""
-                          className="w-[150px] lg:w-[200px]"
-                        />
-                      </Link>
-                      <h1 className="h-[60px]">
-                        {movie.title.slice(0, 10)}...
-                      </h1>
-                    </div>
-                  ))}
-                </div>
-              </div>
             </div>
           </article>
+          <div>
+            <h1 className="text-white md:text-6xl text-center font-semibold">
+              Cast
+            </h1>
+            <div className="w-full">
+              <CastMovie id={id} />
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -1,5 +1,6 @@
 import { useQuery, useInfiniteQuery } from "@tanstack/react-query";
 import {
+  fetchCast,
   fetchDetailMovie,
   fetchDetailTvShow,
   fetchDiscoverMovies,
@@ -132,7 +133,6 @@ export const useFetchTvShows = (type) => {
       switch (type) {
         case "popular":
           nextPage = allPage.length !== 500 ? allPage.length + 1 : undefined;
-          console.log(type);
           return nextPage;
         case "top_rated":
           nextPage = lastPage.length ? allPage.length + 1 : undefined;
@@ -212,3 +212,11 @@ export const useFetchGenreLists = (type, genre) => {
     });
   return [data, status, error, fetchNextPage, isFetchingNextPage, hasNextPage];
 };
+
+export const useFetchCast = (type, id) => {
+  const {data, error, isLoading, isError} = useQuery({
+    queryKey: [`${type}-cast`, id],
+    queryFn: () => fetchCast(type, id)
+  })
+  return [data, error, isLoading, isError]
+}

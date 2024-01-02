@@ -208,3 +208,8 @@ export const fetchGenreLists = async (type, genre, { pageParam }) => {
     return error.message;
   }
 };
+
+export const fetchCast = async (type, id) => {
+  const res = axios.get(`${baseUrl}${type}/${id}/credits?api_key=${apiKey}`)
+  return (await res).data.cast
+}
