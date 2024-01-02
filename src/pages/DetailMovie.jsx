@@ -7,11 +7,12 @@ import { BsArrowLeftCircleFill, BsPeopleFill } from "react-icons/bs";
 import Ratings from "../feature/Ratings";
 import { Link } from "react-router-dom";
 import ButtonPlay from "../components/Elements/ButtonPlay";
+import Loader from "../components/Elements/Loader";
 
 function movie() {
   const { id } = useParams();
   const [moviesUp, setMoviesUp] = useState([]);
-    const [movie, error, isLoasding, isError] = useFetchDetailMovie(id);
+  const [movie, error, isLoasding, isError] = useFetchDetailMovie(id);
   useEffect(() => {
     const getMoviesUp = async () => {
       const pageRandom = ~~(Math.random() * 29 + 1);
@@ -22,7 +23,7 @@ function movie() {
     };
     getMoviesUp();
   }, [id]);
-  if (isLoasding) return "Loading....";
+  if (isLoasding) return <Loader />;
   if (isError) return `Error : ${error.message}`;
   return (
     <div className="bg-primary">
@@ -68,7 +69,7 @@ function movie() {
                     Popularity : {movie?.popularity} <BsPeopleFill />
                   </p>
                 </div>
-                <ButtonPlay series={"movie"} id={movie?.id}/>
+                <ButtonPlay series={"movie"} id={movie?.id} />
               </div>
               <div className="text-white">
                 <h1>Upcoming Movies</h1>

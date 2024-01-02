@@ -13,66 +13,68 @@ const DetailTv = lazy(() => import("./pages/DetailTv"));
 function App() {
   const location = useLocation();
   return (
-    <AnimatePresence mode="wait">
-      <Routes key={location.pathname} location={location}>
-        <Route
-          index
-          element={
-            <Suspense fallback={<Loader />}>
-              <Home />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/movies/:type"
-          element={
-            <Suspense fallback={<Loader />}>
-              <MovieLists />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/tv_show/:type"
-          element={
-            <Suspense fallback={<Loader />}>
-              <TvShowsLists />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/movie/:id"
-          element={
-            <Suspense fallback={<Loader />}>
-              <DetailMovie />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/tv/:id"
-          element={
-            <Suspense fallback={<Loader />}>
-              <DetailTv />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/movies"
-          element={
-            <Suspense fallback={<Loader />}>
-              <SearchListMovies />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/tv"
-          element={
-            <Suspense fallback={<Loader />}>
-              <SearchListTvShows />
-            </Suspense>
-          }
-        />
-      </Routes>
-    </AnimatePresence>
+    <div className="bg-primary">
+      <AnimatePresence mode="wait">
+        <Routes key={location.pathname} location={location}>
+          <Route
+            index
+            element={
+              <Suspense fallback={<Loader />}>
+                <Home />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/movies/:type"
+            element={
+              <Suspense fallback={<Loader />}>
+                <MovieLists />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/tv_show/:type"
+            element={
+              <Suspense fallback={<Loader />}>
+                <TvShowsLists />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/movie/:id"
+            element={
+              <Suspense fallback={<Loader />}>
+                <DetailMovie />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/tv/:id"
+            element={
+              <Suspense fallback={<Loader />}>
+                <DetailTv />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/movies"
+            element={
+              <Suspense fallback={<Loader />}>
+                <SearchListMovies />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/tv"
+            element={
+              <Suspense fallback={<Loader />}>
+                <SearchListTvShows />
+              </Suspense>
+            }
+          />
+        </Routes>
+      </AnimatePresence>
+    </div>
   );
 }
 

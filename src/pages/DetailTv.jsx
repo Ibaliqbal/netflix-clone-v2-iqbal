@@ -7,6 +7,7 @@ import { useFetchDetailTvShow } from "../hooks/useFetchDatas";
 import { fetchAiringTvShows, getRandom } from "../data/api";
 import transition from "../transition";
 import ButtonPlay from "../components/Elements/ButtonPlay";
+import Loader from "../components/Elements/Loader";
 
 function DetailTv() {
   const { id } = useParams();
@@ -21,9 +22,8 @@ function DetailTv() {
     };
     getMovie();
   }, [id]);
-  if (isLoading) return "Loading....";
+  if (isLoading) <Loader />;
   if (isError) return `Error : ${error.message}`;
-  console.log(AiringTodayTv);
   return (
     <main className="bg-primary">
       <div

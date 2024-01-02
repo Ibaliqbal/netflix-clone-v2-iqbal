@@ -5,7 +5,7 @@ function ButtonLoad({isFetchingNextPage, fetchNextPage}) {
     <button
       type="button"
       onClick={() => fetchNextPage()}
-      className="md:col-span-4 col-span-2 bg-secondary px-6 py-3 rounded-md"
+      className="md:col-span-7 col-span-2 bg-secondary px-6 py-3 rounded-md"
     >
       {isFetchingNextPage ? (
         <span className="loader-next"></span>

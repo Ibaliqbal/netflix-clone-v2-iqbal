@@ -16,7 +16,7 @@ function CardTv({ tv }) {
           className="w-full object-cover rounded-lg"
         />
         <div className="absolute inset-0 transition-all ease-in-out duration-300 group-hover:bg-gray-500 group-hover:opacity-75 flex justify-end pb-3 px-2 flex-col">
-          <h2 className="md:text-2xl text-sm font-bold group-hover:opacity-100 opacity-0 transition-opacity ease-in-out duration-300 text-white ">
+          <h2 className="md:text-xl text-sm font-bold group-hover:opacity-100 opacity-0 transition-opacity ease-in-out duration-300 text-white ">
             {tv.name}
           </h2>
           <div className="flex items-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out">

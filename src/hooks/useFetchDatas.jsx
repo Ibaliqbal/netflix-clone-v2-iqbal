@@ -4,6 +4,7 @@ import {
   fetchDetailTvShow,
   fetchDiscoverMovies,
   fetchDiscoverTvShows,
+  fetchGenreLists,
   fetchMovies,
   fetchSearchLists,
   fetchTrendingMovies,
@@ -14,7 +15,7 @@ import {
 export const useFetchMovies = (type) => {
   let nextPage;
   const {
-    data: movies,
+    data,
     status,
     error,
     fetchNextPage,
@@ -43,19 +44,12 @@ export const useFetchMovies = (type) => {
       }
     },
   });
-  return [
-    movies,
-    status,
-    error,
-    fetchNextPage,
-    isFetchingNextPage,
-    hasNextPage,
-  ];
+  return [data, status, error, fetchNextPage, isFetchingNextPage, hasNextPage];
 };
 
 export const useFetchMoviesDiscover = () => {
   const {
-    data: movies,
+    data,
     status,
     error,
     fetchNextPage,
@@ -70,19 +64,12 @@ export const useFetchMoviesDiscover = () => {
       return nextPage;
     },
   });
-  return [
-    movies,
-    status,
-    error,
-    fetchNextPage,
-    isFetchingNextPage,
-    hasNextPage,
-  ];
+  return [data, status, error, fetchNextPage, isFetchingNextPage, hasNextPage];
 };
 
 export const useFetchMoviesTrending = () => {
   const {
-    data: movies,
+    data,
     status,
     error,
     fetchNextPage,
@@ -97,14 +84,7 @@ export const useFetchMoviesTrending = () => {
       return nextPage;
     },
   });
-  return [
-    movies,
-    status,
-    error,
-    fetchNextPage,
-    isFetchingNextPage,
-    hasNextPage,
-  ];
+  return [data, status, error, fetchNextPage, isFetchingNextPage, hasNextPage];
 };
 
 export const useFetchDetailMovie = (id) => {
@@ -138,7 +118,7 @@ export const useFetchDetailTvShow = (id) => {
 export const useFetchTvShows = (type) => {
   let nextPage;
   const {
-    data: shows,
+    data,
     error,
     fetchNextPage,
     isFetchingNextPage,
@@ -152,6 +132,7 @@ export const useFetchTvShows = (type) => {
       switch (type) {
         case "popular":
           nextPage = allPage.length !== 500 ? allPage.length + 1 : undefined;
+          console.log(type);
           return nextPage;
         case "top_rated":
           nextPage = lastPage.length ? allPage.length + 1 : undefined;
@@ -161,7 +142,7 @@ export const useFetchTvShows = (type) => {
       }
     },
   });
-  return [shows, error, fetchNextPage, isFetchingNextPage, hasNextPage, status];
+  return [data, status, error, fetchNextPage, isFetchingNextPage, hasNextPage];
 };
 
 export const useFetchTvShowsDiscover = () => {
@@ -186,7 +167,7 @@ export const useFetchTvShowsDiscover = () => {
 
 export const useFetchTvShowsTrending = () => {
   const {
-    data: shows,
+    data,
     error,
     status,
     hasNextPage,
@@ -201,18 +182,33 @@ export const useFetchTvShowsTrending = () => {
       return nextPage;
     },
   });
-  return [shows, error, status, hasNextPage, fetchNextPage, isFetchingNextPage];
+  return [data, status, error, fetchNextPage, isFetchingNextPage, hasNextPage];
 };
 
 export const useFetchSeacrhLists = (endpoint, query) => {
-  const {data, status, isFetchingNextPage, fetchNextPage, hasNextPage} = useInfiniteQuery({
-    queryKey: [`${endpoint}-search`, query],
-    queryFn: (props) => fetchSearchLists(endpoint, query, props),
-    initialPageParam: 1,
-    getNextPageParam: (lastPage, allPage) => {
-      const nextPage = lastPage.length ? allPage.length + 1 : undefined
-      return nextPage;
-    }
-  })
-  return [data, status, fetchNextPage, isFetchingNextPage, hasNextPage]
-}
+  const { data, status, isFetchingNextPage, fetchNextPage, hasNextPage } =
+    useInfiniteQuery({
+      queryKey: [`${endpoint}-search`, query],
+      queryFn: (props) => fetchSearchLists(endpoint, query, props),
+      initialPageParam: 1,
+      getNextPageParam: (lastPage, allPage) => {
+        const nextPage = lastPage.length ? allPage.length + 1 : undefined;
+        return nextPage;
+      },
+    });
+  return [data, status, fetchNextPage, isFetchingNextPage, hasNextPage];
+};
+export const useFetchGenreLists = (type, genre) => {
+  const { data, status, error, isFetchingNextPage, fetchNextPage, hasNextPage } =
+    useInfiniteQuery({
+      queryKey: [`${type}`, `${genre}`],
+      queryFn: (props) => fetchGenreLists(type, genre, props),
+      initialPageParam: 1,
+      getNextPageParam: (lastPage, allPage) => {
+        const nextPage = lastPage.length ? allPage.length + 1 : undefined;
+        return nextPage;
+      },
+      staleTime: 1000,
+    });
+  return [data, status, error, fetchNextPage, isFetchingNextPage, hasNextPage];
+};

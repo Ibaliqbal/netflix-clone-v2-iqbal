@@ -11,9 +11,7 @@ function SearchListMovies() {
   const search = searchParam.get("search") || "spiderman";
   return (
     <CustomLayout setSearchParam={setSearchParam}>
-      <Suspense fallback={<Loader />}>
-        <ListSearchMovies search={search} />
-      </Suspense>
+      <ListSearchMovies search={search} />
     </CustomLayout>
   );
 }
