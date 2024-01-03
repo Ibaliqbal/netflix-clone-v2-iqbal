@@ -2,7 +2,6 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import { AnimatePresence } from "framer-motion";
 import Loader from "./components/Elements/Loader";
-import CastMovie from "./components/Elements/Cast/CastMovie";
 const Home = lazy(() => import("./pages/Home"));
 const MovieLists = lazy(() => import("./pages/MovieLists"));
 const TvShowsLists = lazy(() => import("./pages/TvShowsLists"));
@@ -73,7 +72,6 @@ function App() {
               </Suspense>
             }
           />
-          <Route path="/testcarousel" element={<CastMovie />} />
         </Routes>
       </AnimatePresence>
     </div>

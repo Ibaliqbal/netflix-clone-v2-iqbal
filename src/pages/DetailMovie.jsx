@@ -7,7 +7,7 @@ import { BsArrowLeftCircleFill, BsPeopleFill } from "react-icons/bs";
 import Ratings from "../feature/Ratings";
 import ButtonPlay from "../components/Elements/ButtonPlay";
 import Loader from "../components/Elements/Loader";
-import CastMovie from "../components/Elements/Cast/CastMovie";
+import CastMovie from "../components/Elements/Cast";
 
 function movie() {
   const { id } = useParams();
@@ -78,7 +78,7 @@ function movie() {
               Cast
             </h1>
             <div className="w-full">
-              <CastMovie id={id} />
+              <CastMovie id={id} type={"movie"} />
             </div>
           </div>
         </div>

@@ -8,8 +8,8 @@ import "swiper/css/autoplay";
 import imgavatar from "../../../assets/images/avatar.jpg";
 import SkeletonCast from "../Skeleton/SkeletonCast";
 
-function CastMovie({ id }) {
-  const [data, error, isLoading, isError] = useFetchCast("movie", id);
+function CastMovie({ id, type }) {
+  const [data, error, isLoading, isError] = useFetchCast(type, id);
   if (isError) return `Error : ${error.message}`;
   return !isLoading ? (
     <Swiper

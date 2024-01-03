@@ -8,6 +8,7 @@ import { fetchAiringTvShows, getRandom } from "../data/api";
 import transition from "../transition";
 import ButtonPlay from "../components/Elements/ButtonPlay";
 import Loader from "../components/Elements/Loader";
+import CastMovie from "../components/Elements/Cast";
 
 function DetailTv() {
   const { id } = useParams();
@@ -74,29 +75,18 @@ function DetailTv() {
                     <BsPeopleFill />
                   </div>
                 </div>
-                <ButtonPlay series={"tv"} id={show?.id}/>
-              </div>
-              <div className="text-white">
-                <h1>Upcoming Tv List</h1>
-                <div className="grid md:grid-cols-4 grid-cols-2 gap-x-2 mt-4">
-                  {AiringTodayTv.map((tv) => (
-                    <div key={tv.id}>
-                      <Link to={`/tv/${tv.id}`}>
-                        <img
-                          src={`${import.meta.env.VITE_BASE_URL_IMG}${
-                            tv.poster_path
-                          }`}
-                          alt=""
-                          className="w-[150px] lg:w-[200px]"
-                        />
-                      </Link>
-                      <h1 className="h-[60px]">{tv.name.slice(0, 10)}...</h1>
-                    </div>
-                  ))}
-                </div>
+                <ButtonPlay series={"tv"} id={show?.id} />
               </div>
             </div>
           </article>
+          <div>
+            <h1 className="text-white md:text-6xl text-center font-semibold">
+              Cast
+            </h1>
+            <div className="w-full mt-4">
+              <CastMovie id={id} type={"tv"} />
+            </div>
+          </div>
         </div>
       </div>
     </main>
